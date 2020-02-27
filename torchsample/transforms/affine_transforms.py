@@ -308,7 +308,7 @@ class Rotate(object):
             interp = self.interp
 
         theta = math.pi / 180 * self.value
-        rotation_matrix = th.FloatTensor([[math.cos(theta), -math.sin(theta), 0],
+        rotation_matrix = th.cuda.FloatTensor([[math.cos(theta), -math.sin(theta), 0],
                                           [math.sin(theta), math.cos(theta), 0],
                                           [0, 0, 1]])
         if self.lazy:

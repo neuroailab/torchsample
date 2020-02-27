@@ -47,7 +47,7 @@ def th_constant_like(x, val):
 
 
 def th_iterproduct(*args):
-    return th.from_numpy(np.indices(args).reshape((len(args),-1)).T)
+    return th.from_numpy(np.indices(args).reshape((len(args),-1)).T).cuda()
 
 def th_iterproduct_like(x):
     return th_iterproduct(*x.size())
@@ -163,7 +163,7 @@ def th_bilinear_interp2d(input, coords):
     y0 = y.floor()
     y1 = y0 + 1
 
-    stride = th.LongTensor(input.stride())
+    stride = th.cuda.LongTensor(input.stride())
     x0_ix = x0.mul(stride[1]).long()
     x1_ix = x1.mul(stride[1]).long()
     y0_ix = y0.mul(stride[2]).long()
